@@ -15,18 +15,18 @@ body {
 
 .screen {
     background: white;
-    padding: 25px 20px;
+    padding: 20px 18px 25px 18px;
     border-radius: 20px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
     max-width: 90%;
     width: 380px;
     position: relative;
     z-index: 10;
-    max-height: 90vh;
+    max-height: 85vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     box-sizing: border-box;
     overflow-y: auto;
 }
@@ -37,17 +37,20 @@ body {
 
 h1 {
     color: #db2777;
-    margin-bottom: 5px;
-    font-size: 22px;
+    margin-top: 5px;
+    margin-bottom: 8px;
+    font-size: 21px;
+    flex-shrink: 0;
 }
 
 /* تعديل حجم الخط الثانوي ليكون أكبر وواضح للعين */
 p {
     color: #4b5563;
-    font-size: 18px;
-    line-height: 1.6;
-    margin-bottom: 15px;
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 12px;
     font-weight: 600;
+    flex-shrink: 0;
 }
 
 button {
@@ -55,13 +58,14 @@ button {
     color: white;
     border: none;
     padding: 12px 24px;
-    font-size: 18px;
+    font-size: 17px;
     border-radius: 10px;
     cursor: pointer;
     font-family: 'Cairo', sans-serif;
     font-weight: bold;
     transition: all 0.3s ease;
-    margin: 5px;
+    margin: 8px 5px 5px 5px;
+    flex-shrink: 0;
 }
 
 button:hover:not(:disabled) {
@@ -83,7 +87,7 @@ button:disabled, button.dimmed-btn {
 
 /* مساحة الزراير في شاشة الطلب */
 .buttons {
-    margin-top: 35px;
+    margin-top: 25px;
     display: flex;
     justify-content: center;
     gap: 15px;
@@ -101,7 +105,7 @@ button:disabled, button.dimmed-btn {
     width: 100%;
     max-width: 250px;
     aspect-ratio: 9 / 16;
-    max-height: 58vh;
+    max-height: 55vh;
     border-radius: 15px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     background-color: #000;
@@ -110,16 +114,16 @@ button:disabled, button.dimmed-btn {
 
 .memory-photo {
     width: 100%;
-    max-height: 280px;
+    max-height: 260px;
     object-fit: cover;
     border-radius: 15px;
-    margin: 15px 0;
+    margin: 10px 0;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
 }
 
 /* تنسيق خاص للصور الطويلة (السكرين شوت من الموبايل) */
 .memory-photo.long-photo {
-    max-height: 360px;
+    max-height: 320px;
     object-fit: contain;
     background-color: #f9fafb;
 }
@@ -129,12 +133,12 @@ button:disabled, button.dimmed-btn {
 ---------------------------------------------------- */
 .gif-wrapper {
     width: 100%;
-    max-width: 200px;
-    margin: 15px 0;
+    max-width: 180px;
+    margin: 10px 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    pointer-events: none; /* إيقاف التفاعل بالماوس لمنع إظهار أزرار تينور أثناء التمرير */
+    pointer-events: none;
 }
 
 .tenor-gif-embed {
@@ -144,15 +148,15 @@ button:disabled, button.dimmed-btn {
 }
 
 .tenor-gif-embed a {
-    display: none !important; /* إخفاء النص البرمجي والروابط التوضيحية لـ Tenor */
+    display: none !important;
 }
 
 /* ستايل الصور اللي بتترمي فوق بعض */
 .photo-container {
     position: relative;
     width: 100%;
-    height: 250px;
-    margin: 20px 0;
+    height: 240px;
+    margin: 15px 0;
 }
 
 .stacked-photo {
@@ -164,8 +168,10 @@ button:disabled, button.dimmed-btn {
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     opacity: 0;
-    transform: scale(3); 
-    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform: scale(1.15);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease-in;
+    will-change: transform, opacity;
+    backface-visibility: hidden;
 }
 
 .stacked-photo.show {
@@ -188,24 +194,29 @@ button:disabled, button.dimmed-btn {
 .options-group {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
     width: 100%;
-    margin: 12px 0;
+    margin: 8px 0;
+    max-height: 48vh;
+    overflow-y: auto;
+    padding: 2px 4px;
+    box-sizing: border-box;
 }
 
 .option-btn {
     background-color: #f3f4f6;
     color: #374151;
     border: 2px solid #e5e7eb;
-    padding: 10px 12px;
+    padding: 8px 10px;
     border-radius: 12px;
-    font-size: 14px;
+    font-size: 13px;
     font-family: 'Cairo', 'Poppins', sans-serif;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
     width: 100%;
     box-sizing: border-box;
+    flex-shrink: 0;
 }
 
 .option-btn:hover:not(:disabled) {
@@ -235,16 +246,16 @@ button:disabled, button.dimmed-btn {
 ---------------------------------------------------- */
 .custom-input-container {
     width: 100%;
-    margin: 8px 0 12px 0;
+    margin: 6px 0 10px 0;
     box-sizing: border-box;
 }
 
 .custom-input {
     width: 100%;
-    padding: 10px 14px;
+    padding: 9px 12px;
     border: 2px solid #db2777;
     border-radius: 12px;
-    font-size: 14px;
+    font-size: 13px;
     font-family: 'Cairo', sans-serif;
     outline: none;
     box-sizing: border-box;
@@ -264,16 +275,16 @@ button:disabled, button.dimmed-btn {
     background-color: #fce7f3;
     border: 2px dashed #db2777;
     border-radius: 15px;
-    padding: 15px 20px;
+    padding: 12px 18px;
     width: 100%;
-    margin: 15px 0 20px 0;
+    margin: 10px 0 15px 0;
     box-sizing: border-box;
     text-align: right;
 }
 
 .summary-box p {
-    margin: 8px 0;
-    font-size: 17px;
+    margin: 6px 0;
+    font-size: 15px;
     color: #374151;
 }
 
@@ -285,8 +296,8 @@ button:disabled, button.dimmed-btn {
     background-color: #25d366 !important;
     color: white !important;
     width: 100%;
-    padding: 14px;
-    font-size: 18px;
+    padding: 12px;
+    font-size: 17px;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
 }
