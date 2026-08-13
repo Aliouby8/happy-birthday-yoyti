@@ -1,3 +1,15 @@
+// التحميل المسبق لجميع الصور لضمان ظهورها فوراً بدون تأخير أو تحميل
+const allImagesToPreload = [
+    'memory.jpg', 'cry.jpg', 'love.jpg', 'principe.jpg',
+    'things.jpg', 'movies.png', 'apology.jpg',
+    'photo1.jpg', 'photo2.jpg', 'photo3.jpg', 'photo4.jpg', 'photo5.jpg', 'photo6.jpg', 'photo7.jpg'
+];
+
+allImagesToPreload.forEach(src => {
+    const img = new Image();
+    img.src = src;
+});
+
 // الشاشات
 const birthdayScreen = document.getElementById('birthday-screen');
 const videoScreen = document.getElementById('video-screen');
@@ -223,7 +235,7 @@ moviesNextBtn.addEventListener('click', () => {
     moviesScreen.classList.add('hidden');
     bestYearsScreen.classList.remove('hidden');
     
-    setTimeout(dropPhotos, 500);
+    setTimeout(dropPhotos, 300);
 });
 
 // 10. من أحلى سنتين ونص ⬅️ طلب الخروج
@@ -427,6 +439,7 @@ if (whatsappBtn) {
 // دالة رمي الصور
 function dropPhotos() {
     const photoStack = document.getElementById('photo-stack');
+    photoStack.innerHTML = '';
     let i = 0;
     
     const interval = setInterval(() => {
@@ -439,9 +452,9 @@ function dropPhotos() {
         img.src = photosList[i];
         img.classList.add('stacked-photo');
 
-        const randomX = Math.floor(Math.random() * 200) - 100;
-        const randomY = Math.floor(Math.random() * 120) - 20;
-        const randomRotation = Math.floor(Math.random() * 50) - 25;
+        const randomX = Math.floor(Math.random() * 180) - 90;
+        const randomY = Math.floor(Math.random() * 100) - 10;
+        const randomRotation = Math.floor(Math.random() * 44) - 22;
 
         img.style.left = `calc(50% - 65px + ${randomX}px)`;
         img.style.top = `${randomY}px`;
@@ -449,11 +462,13 @@ function dropPhotos() {
 
         photoStack.appendChild(img);
 
-        setTimeout(() => {
-            img.classList.add('show');
-            img.style.transform = `scale(1) rotate(${randomRotation}deg)`;
-        }, 50);
+        requestAnimationFrame(() => {
+            setTimeout(() => {
+                img.classList.add('show');
+                img.style.transform = `scale(1) rotate(${randomRotation}deg)`;
+            }, 30);
+        });
 
         i++;
-    }, 800);
+    }, 700);
 }
