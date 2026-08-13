@@ -419,7 +419,7 @@ if (whatsappBtn) {
         const placeStr = selectedPlace || '';
         const foodStr = selectedFood || '';
 
-        const message = `انا اخترت الديت بتاعنا 🥳\n\n` +
+        const message = `انا اخترت الـ date بتاعنا 🥳\n\n` +
                         `المعاد: ${dateStr}\n` +
                         `المكان: ${placeStr}\n` +
                         `الاكل: ${foodStr}\n\n` +
