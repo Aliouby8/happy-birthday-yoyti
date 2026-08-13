@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- عنوان الصفحة في المتصفح -->
+    <title>مفاجأة 🎁</title>
+
+    <!-- ----------------------------------------------------
+       وسوم المعاينة لبرامج المحادثات والواتساب (Open Graph)
+    ---------------------------------------------------- -->
+    <meta property="og:title" content="مفاجأة 🎁">
+    <meta property="og:description" content="كل سنة وانتي طيبة يا يويتي 🥳🎂">
+    <!-- استبدل your-domain.com بالرابط الحقيقي بعد الاستضافة -->
+    <meta property="og:image" content="https://happy-birthday-yoyti.netlify.app/">
+    <meta property="og:url" content="https://happy-birthday-yoyti.netlify.app/">
+    <meta property="og:type" content="website">
+
+    <!-- ربط ملف الألوان -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- الزينة والبلالين الخلفية الثابتة (تظهر بعد الضغط على Happy Birthday) -->
+    <div id="bg-decorations" class="bg-decorations hidden">
+        <!-- زينة المثلثات الملونة في الأعلى -->
+        <div class="garland">
+            <div class="flag flag-1"></div>
+            <div class="flag flag-2"></div>
+            <div class="flag flag-3"></div>
+            <div class="flag flag-4"></div>
+            <div class="flag flag-5"></div>
+            <div class="flag flag-6"></div>
+            <div class="flag flag-1"></div>
+            <div class="flag flag-2"></div>
+            <div class="flag flag-3"></div>
+            <div class="flag flag-4"></div>
+            <div class="flag flag-5"></div>
+            <div class="flag flag-6"></div>
+        </div>
+
+        <!-- بلالين جانبية متوزعة في الأركان -->
+        <div class="side-balloon left-top">🎈</div>
+        <div class="side-balloon left-bottom">🎈</div>
+        <div class="side-balloon right-top">🎈</div>
+        <div class="side-balloon right-bottom">🎈</div>
+
+        <!-- نجوم ولحظات زينة في الخلفية -->
+        <div class="sparkle sp-1">✨</div>
+        <div class="sparkle sp-2">💖</div>
+        <div class="sparkle sp-3">✨</div>
+        <div class="sparkle sp-4">🎉</div>
+    </div>
+
+    <!-- الشاشة الأولى: تهنئة عيد الميلاد -->
+    <div id="birthday-screen" class="screen">
+        <h1>كل سنة وانتي طيبة يا يويتي 🥳🎂</h1>
+        <p>بمناسبة انك كبرتي سنة كمان في حضني، خليني احتفل بيكي بطريقتي...</p>
+        <button id="next-btn">يلا بينا 👀</button>
+    </div>
+
+    <!-- الشاشة الثانية: شاشة الفيديو الطولي (Reels) -->
+    <div id="video-screen" class="screen hidden">
+        <div class="video-container">
+            <video id="birthday-video" playsinline class="video-player">
+                <source src="video.mp4" type="video/mp4">
+                متصفحك لا يدعم تشغيل الفيديو.
+            </video>
+        </div>
+        <button id="video-next-btn" disabled class="dimmed-btn">🎂 Happy Birthday</button>
+    </div>
+
+    <!-- الشاشة الثالثة: الاشتغالة الكوميدية -->
+    <div id="teaser-screen" class="screen hidden">
+        <h1>انتي بجد كنتي فاكراني مش هعمل حاجة في عيد ميلادك؟</h1>
+        <p>كل مرة اشتغلك كدة متعلمتيش؟ 😂</p>
+        <button id="teaser-next-btn">انت تنح</button>
+    </div>
+
+    <!-- الشاشة الرابعة: فاكرة؟ -->
+    <div id="memory-screen" class="screen hidden">
+        <h1>فاكرة؟ 🥹</h1>
+        <!-- الصورة الأولى: memory.jpg -->
+        <img src="memory.jpg" alt="ذكرى حلوة" class="memory-photo">
+        <p>وأنا بخترع موضوع عشان ابعتلك 😂</p>
+        <button id="memory-next-btn">أيوة ❤️</button>
+    </div>
+
+    <!-- الشاشة الخامسة: لما خلتيني أعيط -->
+    <div id="cry-screen" class="screen hidden">
+        <h1>ولما خلتيني أعيط</h1>
+        <!-- الصورة التانية: cry.jpg -->
+        <img src="cry.jpg" alt="لما خلتيني أعيط" class="memory-photo">
+        <p>حلو إحساس ان حد بيحبني</p>
+        <button id="cry-next-btn">حصل</button>
+    </div>
+
+    <!-- الشاشة السادسة: وأنا كمان بموت فيكي -->
+    <div id="love-screen" class="screen hidden">
+        <h1>وأنا كمان بموت فيكي والله ❤️</h1>
+        <!-- الصورة الثالثة: love.jpg -->
+        <img src="love.jpg" alt="بموت فيكي" class="memory-photo">
+        <button id="love-next-btn">عارفة</button>
+    </div>
+
+    <!-- الشاشة السابعة: Principe Azzurro -->
+    <div id="principe-screen" class="screen hidden">
+        <h1>بقيت الـ Principe Azzurro</h1>
+        <img src="principe.jpg" alt="Principe Azzurro" class="memory-photo">
+        <button id="principe-next-btn">il mio Principe</button>
+    </div>
+
+    <!-- الشاشة الثامنة: الحاجات اللي عملناها مع بعض -->
+    <div id="things-screen" class="screen hidden">
+        <h1>فاكرة كل الحاجات اللي عملناها سوا؟</h1>
+        <img src="things.jpg" alt="الحاجات اللي عملناها" class="memory-photo long-photo">
+        <button id="things-next-btn">ولسة أكتر</button>
+    </div>
+
+    <!-- الشاشة التاسعة: كمية الأفلام -->
+    <div id="movies-screen" class="screen hidden">
+        <h1>وكمية الافلام اللي شوفناها  🎬</h1>
+        <img src="movies.png" alt="الأفلام" class="memory-photo">
+        <button id="movies-next-btn">🤯 Wow</button>
+    </div>
+
+    <!-- الشاشة العاشرة: أحلى سنتين ونص -->
+    <div id="best-years-screen" class="screen hidden">
+        <h1> عشت أحلى سنتين ونص في حياتي  ❤️</h1>
+        
+        <!-- المكان اللي الصور هتترمي فيه -->
+        <div id="photo-stack" class="photo-container"></div>
+        
+        <button id="best-years-next-btn">وأنا كمان</button>
+    </div>
+
+    <!-- الشاشة الحادية عشرة: طلب الخروج الكوميدي -->
+    <div id="ask-screen" class="screen hidden">
+        <h1>ممكن نحتفل بعيد ميلادك مع بعض؟</h1>
+        <div class="buttons">
+            <button id="yes-btn">أكيد 😍</button>
+            <button id="no-btn">لا 😒</button>
+        </div>
+    </div>
+
+    <!-- الشاشة الثانية عشرة: تأكيد الموافقة -->
+    <div id="confirm-screen" class="screen hidden">
+        <h1>كنت عارف انك هتوافقي من أول مرة 😂❤️</h1>
+        
+        <!-- إدراج كود الـ GIF الشفاف من Tenor -->
+        <div class="gif-wrapper">
+            <div class="tenor-gif-embed" data-postid="7348891060322798728" data-share-method="host" data-aspect-ratio="0.990991" data-width="100%">
+                <a href="https://tenor.com/view/yume-nikki-yume-nikki-jumping-yume-nikki-holding-hands-gif-7348891060322798728">Yume Nikki Yume Nikki Jumping Sticker</a>
+            </div>
+            <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+        </div>
+        
+        <button id="confirm-next-btn">It's a date</button>
+    </div>
+
+    <!-- الشاشة الثالثة عشرة: اختيار اليوم (صفحة منفصلة) -->
+    <div id="date-screen" class="screen hidden">
+        <h1>تحبي نخرج يوم ايه؟ 📅</h1>
+        <div class="options-group">
+            <button class="option-btn dimmed-btn" disabled>الجمعة 14 أغسطس</button>
+            <button class="option-btn date-option-btn">الخميس 20 أغسطس</button>
+            <button class="option-btn date-option-btn">الجمعة 21 أغسطس</button>
+            <button class="option-btn date-option-btn">السبت 22 أغسطس</button>
+            <button class="option-btn date-option-btn">الأحد 23 أغسطس</button>
+        </div>
+        <button id="date-next-btn" class="dimmed-btn" disabled>تمام</button>
+    </div>
+
+    <!-- الشاشة الرابعة عشرة: الاعتذار المزيف -->
+    <div id="apology-screen" class="screen hidden">
+        <h1>آسف اني مش هقدر انزل الاسبوع ده 😅</h1>
+        <img src="apology.jpg" alt="آسف" class="memory-photo">
+        <button id="apology-next-btn">ولا يهمك ❤️</button>
+    </div>
+
+    <!-- الشاشة الخامسة عشرة: اختيار المكان -->
+    <div id="place-screen" class="screen hidden">
+        <h1>تحبي نروح فين؟ 🗺️</h1>
+        <div class="options-group">
+            <button class="option-btn place-option-btn">مطعم او كافيه رايق ☕</button>
+            <button class="option-btn place-option-btn">Cinema 🎬</button>
+            <button class="option-btn place-option-btn">Mall 🛍️</button>
+            <button class="option-btn place-option-btn">مكان هادي ع النيل 🌊</button>
+            <button class="option-btn place-option-btn">Arcade 🎮</button>
+            <button class="option-btn place-option-btn">متحف 🏛️</button>
+            <button class="option-btn place-option-btn">Picnic 🧺</button>
+            <button class="option-btn place-option-btn" id="custom-option-btn">حاجة مختلفة ✨</button>
+        </div>
+
+        <!-- خانة الكتابة في حالة اختيار "حاجة مختلفة" -->
+        <div id="custom-place-container" class="custom-input-container hidden">
+            <input type="text" id="custom-place-input" placeholder="اكتبي المكان اللي في بالك..." class="custom-input">
+        </div>
+
+        <button id="place-next-btn" class="dimmed-btn" disabled>حلو</button>
+    </div>
+
+    <!-- الشاشة السادسة عشرة: اختيار الأكل -->
+    <div id="food-screen" class="screen hidden">
+        <h1>تحبي ناكل ايه؟ 🍕🍔</h1>
+        <div class="options-group">
+            <button class="option-btn food-option-btn">Pizza & Italian 🍕🍝</button>
+            <button class="option-btn food-option-btn">أكل مصري ومشويات 🥩🍖</button>
+            <button class="option-btn food-option-btn">Indian 🍛</button>
+            <button class="option-btn food-option-btn">Chinese 🥢</button>
+            <button class="option-btn food-option-btn">Mexican 🌮</button>
+            <button class="option-btn food-option-btn">Sushi 🍣</button>
+            <button class="option-btn food-option-btn">Burgers 🍔</button>
+            <button class="option-btn food-option-btn">Sea Food 🐟🦐</button>
+            <button class="option-btn food-option-btn" id="custom-food-option-btn">حاجة مختلفة ✨</button>
+        </div>
+
+        <!-- خانة الكتابة في حالة اختيار "حاجة مختلفة" -->
+        <div id="custom-food-container" class="custom-input-container hidden">
+            <input type="text" id="custom-food-input" placeholder="اكتبي الأكل اللي نفسك فيه..." class="custom-input">
+        </div>
+
+        <button id="food-next-btn" class="dimmed-btn" disabled>تمام</button>
+    </div>
+
+    <!-- الشاشة السابعة عشرة: الشاشة النهائية (الملخص والواتساب) -->
+    <div id="final-screen" class="screen hidden">
+        <h1>اتفقنا 🎉</h1>
+        <div class="summary-box">
+            <p><strong>المعاد:</strong> <span id="summary-date"></span></p>
+            <p><strong>المكان:</strong> <span id="summary-place"></span></p>
+            <p><strong>الاكل:</strong> <span id="summary-food"></span></p>
+        </div>
+        <button id="whatsapp-btn" class="whatsapp-btn">ابعتيلي 💬</button>
+    </div>
+
+    <!-- ملف الصوت (المزيكا) -->
+    <audio id="bg-music" loop>
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- مكتبة احتفال الكونفيتي والالعاب النارية -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <!-- ربط ملف الأكشن -->
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,409 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Poppins:wght@400;600&display=swap');
+
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fdf2f8;
+    font-family: 'Cairo', 'Poppins', sans-serif;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.screen {
+    background: white;
+    padding: 25px 20px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    max-width: 90%;
+    width: 380px;
+    position: relative;
+    z-index: 10;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.hidden {
+    display: none !important;
+}
+
+h1 {
+    color: #db2777;
+    margin-bottom: 5px;
+    font-size: 22px;
+}
+
+/* تعديل حجم الخط الثانوي ليكون أكبر وواضح للعين */
+p {
+    color: #4b5563;
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+button {
+    background-color: #db2777;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: 'Cairo', sans-serif;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    margin: 5px;
+}
+
+button:hover:not(:disabled) {
+    background-color: #be185d;
+}
+
+/* ستايل الزرار المطفي (غير المفعل) */
+button:disabled, button.dimmed-btn {
+    background-color: #9ca3af !important;
+    cursor: not-allowed;
+    opacity: 0.5;
+    transform: scale(0.98);
+}
+
+#no-btn {
+    background-color: #6b7280;
+    position: relative;
+}
+
+/* مساحة الزراير في شاشة الطلب */
+.buttons {
+    margin-top: 35px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* ستايل الفيديوهات الطولية (Reels / 9:16) */
+.video-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.video-player {
+    width: 100%;
+    max-width: 250px;
+    aspect-ratio: 9 / 16;
+    max-height: 58vh;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    background-color: #000;
+    object-fit: cover;
+}
+
+.memory-photo {
+    width: 100%;
+    max-height: 280px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin: 15px 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* تنسيق خاص للصور الطويلة (السكرين شوت من الموبايل) */
+.memory-photo.long-photo {
+    max-height: 360px;
+    object-fit: contain;
+    background-color: #f9fafb;
+}
+
+/* ----------------------------------------------------
+   تنسيق حاوية الـ GIF الشفاف وإلغاء تفاعلات تينور
+---------------------------------------------------- */
+.gif-wrapper {
+    width: 100%;
+    max-width: 200px;
+    margin: 15px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none; /* إيقاف التفاعل بالماوس لمنع إظهار أزرار تينور أثناء التمرير */
+}
+
+.tenor-gif-embed {
+    border-radius: 15px;
+    overflow: hidden;
+    background: transparent !important;
+}
+
+.tenor-gif-embed a {
+    display: none !important; /* إخفاء النص البرمجي والروابط التوضيحية لـ Tenor */
+}
+
+/* ستايل الصور اللي بتترمي فوق بعض */
+.photo-container {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    margin: 20px 0;
+}
+
+.stacked-photo {
+    position: absolute;
+    width: 130px;
+    height: 130px;
+    object-fit: cover;
+    border: 5px solid white;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    opacity: 0;
+    transform: scale(3); 
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.stacked-photo.show {
+    opacity: 1;
+}
+
+/* منع ظهور السكرول بار أثناء رمي الصور */
+#best-years-screen {
+    overflow: hidden;
+}
+
+#best-years-next-btn {
+    position: relative;
+    z-index: 100;
+}
+
+/* ----------------------------------------------------
+   📅 ستايل خيارات الأيام والمواقع والأكل
+---------------------------------------------------- */
+.options-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    margin: 12px 0;
+}
+
+.option-btn {
+    background-color: #f3f4f6;
+    color: #374151;
+    border: 2px solid #e5e7eb;
+    padding: 10px 12px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-family: 'Cairo', 'Poppins', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.option-btn:hover:not(:disabled) {
+    background-color: #fce7f3;
+    border-color: #f43f5e;
+}
+
+.option-btn.selected {
+    background-color: #db2777;
+    color: white;
+    border-color: #db2777;
+    font-weight: bold;
+}
+
+/* ستايل الأزرار المطفية داخل خيارات الأيام */
+.option-btn:disabled, .option-btn.dimmed-btn {
+    background-color: #e5e7eb !important;
+    color: #9ca3af !important;
+    border-color: #d1d5db !important;
+    cursor: not-allowed;
+    opacity: 0.6;
+    transform: none;
+}
+
+/* ----------------------------------------------------
+   ✍️ ستايل حقل إدخال الخيارات المخصصة
+---------------------------------------------------- */
+.custom-input-container {
+    width: 100%;
+    margin: 8px 0 12px 0;
+    box-sizing: border-box;
+}
+
+.custom-input {
+    width: 100%;
+    padding: 10px 14px;
+    border: 2px solid #db2777;
+    border-radius: 12px;
+    font-size: 14px;
+    font-family: 'Cairo', sans-serif;
+    outline: none;
+    box-sizing: border-box;
+    text-align: center;
+    background-color: #fff;
+    transition: all 0.3s ease;
+}
+
+.custom-input:focus {
+    box-shadow: 0 0 8px rgba(219, 39, 119, 0.4);
+}
+
+/* ----------------------------------------------------
+   📋 ستايل ملخص الاختيارات وزر الواتساب
+---------------------------------------------------- */
+.summary-box {
+    background-color: #fce7f3;
+    border: 2px dashed #db2777;
+    border-radius: 15px;
+    padding: 15px 20px;
+    width: 100%;
+    margin: 15px 0 20px 0;
+    box-sizing: border-box;
+    text-align: right;
+}
+
+.summary-box p {
+    margin: 8px 0;
+    font-size: 17px;
+    color: #374151;
+}
+
+.summary-box p strong {
+    color: #db2777;
+}
+
+.whatsapp-btn {
+    background-color: #25d366 !important;
+    color: white !important;
+    width: 100%;
+    padding: 14px;
+    font-size: 18px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+}
+
+.whatsapp-btn:hover {
+    background-color: #1ebc57 !important;
+}
+
+/* 🎈 ستايل وانيميشن البلالين الطائرة 🎈 */
+.balloon {
+    position: fixed;
+    bottom: -80px;
+    z-index: 99999;
+    pointer-events: none;
+    animation: floatUp linear forwards;
+    user-select: none;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(-50vh) rotate(15deg) translateX(25px);
+    }
+    100% {
+        transform: translateY(-115vh) rotate(-15deg) translateX(-25px);
+        opacity: 0;
+    }
+}
+
+/* ----------------------------------------------------
+   🎉 الزينة والبلالين الثابتة خلف المربع
+---------------------------------------------------- */
+.bg-decorations {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.garland {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    border-top: 2px dashed #f43f5e;
+    padding-top: 0;
+}
+
+.flag {
+    width: 0;
+    height: 0;
+    border-left: 18px solid transparent;
+    border-right: 18px solid transparent;
+    border-top: 35px solid #ec4899;
+    filter: drop-shadow(0 3px 3px rgba(0,0,0,0.1));
+    animation: swing 3s ease-in-out infinite alternate;
+}
+
+.flag-1 { border-top-color: #ec4899; animation-delay: 0s; }
+.flag-2 { border-top-color: #3b82f6; animation-delay: 0.3s; }
+.flag-3 { border-top-color: #f59e0b; animation-delay: 0.6s; }
+.flag-4 { border-top-color: #10b981; animation-delay: 0.9s; }
+.flag-5 { border-top-color: #8b5cf6; animation-delay: 1.2s; }
+.flag-6 { border-top-color: #ef4444; animation-delay: 1.5s; }
+
+@keyframes swing {
+    0% { transform: rotate(-5deg); }
+    100% { transform: rotate(5deg); }
+}
+
+.side-balloon {
+    position: absolute;
+    font-size: 55px;
+    user-select: none;
+    animation: gentleSway 4s ease-in-out infinite alternate;
+    filter: drop-shadow(0 8px 10px rgba(0,0,0,0.15));
+}
+
+.left-top { top: 12%; left: 4vw; filter: hue-rotate(0deg); }
+.left-bottom { bottom: 12%; left: 6vw; animation-delay: 1s; filter: hue-rotate(90deg); }
+.right-top { top: 15%; right: 4vw; animation-delay: 1.5s; filter: hue-rotate(180deg); }
+.right-bottom { bottom: 10%; right: 6vw; animation-delay: 0.5s; filter: hue-rotate(270deg); }
+
+@keyframes gentleSway {
+    0% { transform: translateY(0) rotate(-6deg); }
+    100% { transform: translateY(-18px) rotate(6deg); }
+}
+
+.sparkle {
+    position: absolute;
+    font-size: 26px;
+    animation: pulse 2.5s infinite alternate;
+}
+
+.sp-1 { top: 25%; left: 15vw; animation-delay: 0.2s; }
+.sp-2 { top: 75%; left: 18vw; animation-delay: 0.8s; }
+.sp-3 { top: 22%; right: 16vw; animation-delay: 1.2s; }
+.sp-4 { top: 70%; right: 15vw; animation-delay: 0.5s; }
+
+@keyframes pulse {
+    0% { transform: scale(0.8); opacity: 0.5; }
+    100% { transform: scale(1.2); opacity: 1; }
+}
+
+@media (max-width: 600px) {
+    .side-balloon { font-size: 38px; }
+    .left-top { left: 2vw; }
+    .right-top { right: 2vw; }
+    .left-bottom { left: 2vw; }
+    .right-bottom { right: 2vw; }
+    .sparkle { font-size: 20px; }
+}
